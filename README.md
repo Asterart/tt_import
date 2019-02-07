@@ -14,7 +14,7 @@ which were delivered with this task.
 
 Application can handle any other files if csv structure for:
  - candidates is like:
-  | "Name,E-mail,Phone,Job,Created at"
+  "Name,E-mail,Phone,Job,Created at"
 
  - and for notes is like:
-  | "Email,note"
+  "Email,note"
