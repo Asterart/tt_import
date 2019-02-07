@@ -1,0 +1,60 @@
+<h1 class="text-center candidates-list-title">List of Candidates</h1>
+<div class="row candidates-list-header">
+  <div class="col-2">Name</div>
+  <div class="col-2">Email</div>
+  <div class="col-1">Phone</div>
+  <div class="col-1">No. of applications</div>
+  <div class="col-4">
+    <div class="col-12" style="display:inline-flex;">
+      <div class="col-6">Job title</div>
+      <div class="col-6">Date of apply</div>
+    </div>
+  </div>
+</div>
+
+
+<% @candidates.each do |c| %>
+  <div class="row candidates-list-items">
+    <div class="col-2"><%= c.name %></div>
+    <div class="col-2"><%= c.email %></div>
+    <div class="col-1">
+      <% if c.phone == nil %>
+        N/A
+      <% else %>
+        <%= c.phone %>
+      <% end %>
+    </div>
+    <div class="col-1"><%= c.jobs.count %></div>
+    <div class="col-4">
+      <% c.jobs.each do |j| %>
+        <div class="col-12" style="display:inline-flex;">
+          <div class="col-6"><%= j.title %></div>
+          <div class="col-6"><%= j.applied_at %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <% if c.notes.count > 0 %>
+    <div class="row candidates-list-header">
+      <div class="col-12 "><%= c.name %> Notes</div>
+    </div>
+    <div class="row candidates-list-items">
+      <div class="candidates-notes">
+        <% i = 1 %>
+        <% c.notes.each do |note| %>
+          <%= link_to "Note #{i}", "##{note.id}", class: "btn btn-primary", role: "button", data: { toggle: "collapse" }, aria: { expanded: "false", controls: "#{note.id}" } %>
+          <div class="collapse" id="<%= note.id %>">
+            <div class="card card-body">
+              <%= note.content %>
+            </div>
+          </div>
+          <% i = i+1 %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<%= will_paginate @candidates, class: "text-center" %>
+
+

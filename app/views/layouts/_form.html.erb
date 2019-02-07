@@ -1,0 +1,10 @@
+<div class="col-4" style="margin: 0 auto;">
+  <h4 style="padding: 20px;"><%= title %></h4>
+  <%= form_for object, url: url do |f| %>
+    <div class="form-group">
+      <%= f.label :file, "Choose CSV file" %>
+      <%= f.file_field :file, class: "form-control-file", required: true %>
+    </div>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+</div>
